@@ -1,92 +1,185 @@
-# a11y-agent
+# mcp-server-a11y
 
-An MCP (Model Context Protocol) server for accessibility testing with Cloudflare bypass. Uses **Camoufox** (anti-detect browser) and **axe-core** for accessibility audits on protected sites.
+[![PyPI version](https://badge.fury.io/py/mcp-server-a11y.svg)](https://pypi.org/project/mcp-server-a11y/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
-## Quick Start
+A Model Context Protocol (MCP) server for **accessibility testing** with **Cloudflare bypass**. Uses [Camoufox](https://github.com/daijro/camoufox) (anti-detect browser) and [axe-core](https://github.com/dequelabs/axe-core) to perform WCAG accessibility audits on any website, including those protected by Cloudflare.
 
-### Install with Claude Desktop
-
-Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
-
-```json
-{
-  "mcpServers": {
-    "a11y-agent": {
-      "command": "uvx",
-      "args": ["a11y-agent"]
-    }
-  }
-}
-```
-
-Then restart Claude Desktop.
-
-> **Note**: On first run, Camoufox will automatically download its browser binary (~100MB).
-
-### Install with Claude Code
-
-```bash
-claude mcp add a11y-agent -- uvx a11y-agent
-```
-
-Or add manually to `.claude/settings.json`:
-
-```json
-{
-  "mcpServers": {
-    "a11y-agent": {
-      "command": "uvx",
-      "args": ["a11y-agent"]
-    }
-  }
-}
-```
-
-## Installation Options
-
-### From PyPI (recommended)
-
-```bash
-# Run directly without installing
-uvx a11y-agent
-
-# Or install globally
-uv tool install a11y-agent
-```
-
-### From GitHub
-
-```bash
-# Run directly from repo
-uvx --from git+https://github.com/yourusername/a11y-agent a11y-agent
-
-# Or install from repo
-uv tool install git+https://github.com/yourusername/a11y-agent
-```
-
-### For Development
-
-```bash
-git clone https://github.com/yourusername/a11y-agent
-cd a11y-agent
-uv venv
-source .venv/bin/activate
-uv pip install -e ".[dev]"
-```
+<a href="https://glama.ai/mcp/servers/mcp-server-a11y">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/mcp-server-a11y/badge" alt="mcp-server-a11y MCP server" />
+</a>
 
 ## Features
 
-- **Cloudflare Bypass**: Uses Camoufox, an anti-detect browser with C++ level fingerprint injection
-- **axe-core Integration**: Industry-standard accessibility testing engine from Deque
-- **WCAG Compliance**: Supports WCAG 2.0, 2.1, and 2.2 at levels A, AA, and AAA
-- **Multiple Report Formats**: Export as JSON, HTML, or CSV
-- **Persistent Sessions**: Cloudflare verification cookies are preserved across scans
+- **Cloudflare Bypass** - Uses Camoufox anti-detect browser with C++ level fingerprint injection
+- **axe-core Integration** - Industry-standard accessibility testing engine from Deque
+- **WCAG Compliance** - Supports WCAG 2.0, 2.1, and 2.2 at levels A, AA, and AAA
+- **Multiple Report Formats** - Export as JSON, HTML, or CSV
+- **MCP Protocol** - Works with Claude Desktop, Claude Code, VS Code, Cursor, and other MCP clients
+
+## Quick Start
+
+### Claude Code (One Command)
+
+```bash
+claude mcp add a11y -- uvx mcp-server-a11y
+```
+
+That's it! This command:
+1. Configures Claude Code to use the `a11y` MCP server
+2. Uses `uvx` to automatically download and run the package on-demand from PyPI
+3. No separate installation step needed - `uvx` handles everything
+
+### Claude Desktop
+
+Add to your config file:
+
+**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "a11y": {
+      "command": "uvx",
+      "args": ["mcp-server-a11y"]
+    }
+  }
+}
+```
+
+## Alternative Installation Methods
+
+### Using pip (Manual Installation)
+
+If you prefer traditional installation:
+
+```bash
+pip install mcp-server-a11y
+```
+
+Then configure your MCP client to run:
+```bash
+python -m a11y_agent.server
+```
+
+### Standalone with uvx
+
+Run directly without any MCP client:
+
+```bash
+uvx mcp-server-a11y
+```
+
+> **Note**: `uvx` (from the [uv](https://github.com/astral-sh/uv) project) automatically downloads packages from PyPI into an isolated environment and runs them. No `pip install` required.
+
+## Configuration for Other Tools
+
+### Claude Code (Manual Config)
+
+If you prefer to edit settings manually instead of using the CLI command:
+
+Add to `.claude/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "a11y": {
+      "command": "uvx",
+      "args": ["mcp-server-a11y"]
+    }
+  }
+}
+```
+
+### VS Code with Continue
+
+Add to your Continue configuration (`.continue/config.json`):
+
+```json
+{
+  "experimental": {
+    "modelContextProtocolServers": [
+      {
+        "transport": {
+          "type": "stdio",
+          "command": "uvx",
+          "args": ["mcp-server-a11y"]
+        }
+      }
+    ]
+  }
+}
+```
+
+### VS Code with Cline
+
+Add to Cline MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "a11y": {
+      "command": "uvx",
+      "args": ["mcp-server-a11y"]
+    }
+  }
+}
+```
+
+### Cursor
+
+Add to Cursor's MCP configuration (`~/.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "a11y": {
+      "command": "uvx",
+      "args": ["mcp-server-a11y"]
+    }
+  }
+}
+```
+
+### Windsurf
+
+Add to Windsurf's MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "a11y": {
+      "command": "uvx",
+      "args": ["mcp-server-a11y"]
+    }
+  }
+}
+```
+
+### Zed
+
+Add to Zed's settings (`~/.config/zed/settings.json`):
+
+```json
+{
+  "context_servers": {
+    "a11y": {
+      "command": {
+        "path": "uvx",
+        "args": ["mcp-server-a11y"]
+      }
+    }
+  }
+}
+```
 
 ## Available Tools
 
 | Tool | Description |
 |------|-------------|
-| `scan_page(url, wcag_level, wait_for_cloudflare)` | Navigate to URL, bypass Cloudflare, run accessibility scan |
+| `scan_page(url, wcag_level?, wait_for_cloudflare?)` | Navigate to URL, bypass Cloudflare, run accessibility scan |
 | `scan_element(selector)` | Scan specific element on current page |
 | `get_violations()` | Get detailed violations from last scan |
 | `get_full_report()` | Get complete axe report (violations, passes, incomplete) |
@@ -94,22 +187,30 @@ uv pip install -e ".[dev]"
 | `set_wcag_level(level)` | Set WCAG level (A, AA, AAA, 21A, 21AA, 22AA) |
 | `export_report(format)` | Export as JSON, HTML, or CSV |
 
-## Example Usage
+## Usage Examples
 
-Once configured, ask Claude to:
+Once configured, ask your AI assistant:
 
-> "Scan https://www.adobe.com/plans/creativecloud.html for accessibility issues"
+> "Scan https://example.com for accessibility issues"
 
-Claude will:
-1. Use `scan_page` to navigate and bypass Cloudflare
-2. Run axe-core accessibility audit
-3. Return a summary of violations by severity
+> "Generate an HTML accessibility report for https://adobe.com"
 
-For a detailed report:
+> "Check WCAG 2.2 AA compliance for this page"
 
-> "Generate an HTML accessibility report for that page"
+> "What accessibility violations does this website have?"
 
-Claude will use `export_report("html")` to create a styled report.
+### Example Workflow
+
+```
+1. scan_page("https://example.com", wcag_level="22AA")
+   → Navigates, bypasses Cloudflare, returns violation summary
+
+2. get_violations()
+   → Returns detailed list of accessibility issues
+
+3. export_report("html")
+   → Generates styled HTML report for stakeholders
+```
 
 ## WCAG Levels
 
@@ -124,30 +225,71 @@ Claude will use `export_report("html")` to create a styled report.
 
 ## How Cloudflare Bypass Works
 
-Camoufox is an anti-detect browser based on Firefox with:
+This server uses [Camoufox](https://github.com/daijro/camoufox), an anti-detect browser based on Firefox with:
 
-- **C++ level fingerprint injection**: Modifications at the browser engine level, not JavaScript patches
-- **Realistic fingerprints**: Uses BrowserForge to generate realistic device profiles
-- **Human-like behavior**: Optional mouse movement humanization
-- **Persistent sessions**: Cloudflare verification cookies are preserved across scans
+- **C++ level fingerprint injection** - Modifications at the browser engine level, not JavaScript patches
+- **Realistic fingerprints** - Uses BrowserForge to generate realistic device profiles
+- **Human-like behavior** - Optional mouse movement humanization
+- **Persistent sessions** - Cloudflare verification cookies are preserved
 
 The browser automatically handles:
 - JavaScript challenges ("Just a moment...")
-- Turnstile CAPTCHA (often passes automatically due to realistic fingerprints)
+- Turnstile CAPTCHA (often passes automatically)
 - Browser fingerprint checks
 
 ## Requirements
 
-- Python 3.10+ (automatically managed by `uvx`)
+- Python 3.10+
 - macOS, Linux, or Windows
-- ~100MB disk space for Camoufox browser binary
+- ~300MB disk space (for Camoufox browser binary, downloaded on first run)
+
+## Development
+
+```bash
+# Clone the repository
+git clone https://github.com/anthropics/mcp-server-a11y
+cd mcp-server-a11y
+
+# Create virtual environment
+uv venv
+source .venv/bin/activate
+
+# Install dependencies
+uv pip install -e ".[dev]"
+
+# Download Camoufox browser
+python -m camoufox fetch
+
+# Run tests
+pytest
+```
+
+### Building
+
+```bash
+uv build
+```
+
+### Publishing to PyPI
+
+```bash
+uv publish
+```
+
+## Debugging
+
+You can debug the MCP server using the MCP Inspector:
+
+```bash
+npx @modelcontextprotocol/inspector uvx mcp-server-a11y
+```
 
 ## Troubleshooting
 
 ### "Cloudflare challenge timed out"
 
 - The site may have aggressive bot detection beyond standard Cloudflare
-- Try running with `wait_for_cloudflare=True` (default)
+- Try with `wait_for_cloudflare=True` (default)
 - Some sites require manual verification on first visit
 
 ### Browser fails to launch
@@ -155,7 +297,6 @@ The browser automatically handles:
 Camoufox downloads its browser binary on first run. If this fails:
 
 ```bash
-# Manually trigger browser download
 python -c "import camoufox; camoufox.install()"
 ```
 
@@ -165,10 +306,16 @@ The page may have strict Content Security Policy. Try scanning a different page 
 
 ## License
 
-MIT
+MIT License - see [LICENSE](LICENSE) for details.
 
 ## Credits
 
 - [axe-core](https://github.com/dequelabs/axe-core) - Accessibility testing engine by Deque
 - [Camoufox](https://github.com/daijro/camoufox) - Anti-detect browser
 - [MCP](https://modelcontextprotocol.io/) - Model Context Protocol by Anthropic
+
+## Related Projects
+
+- [mcp-server-fetch](https://github.com/modelcontextprotocol/servers/tree/main/src/fetch) - Web content fetching
+- [mcp-server-puppeteer](https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer) - Browser automation
+- [mcp-server-playwright](https://github.com/microsoft/playwright-mcp) - Playwright browser control

@@ -1,5 +1,5 @@
 [project]
-name = "a11y-agent"
+name = "mcp-server-a11y"
 version = "0.1.0"
 description = "MCP server for accessibility testing with Cloudflare bypass using Camoufox and axe-core"
 readme = "README.md"
@@ -8,17 +8,31 @@ license = {text = "MIT"}
 authors = [
     {name = "Antonio Ramirez"}
 ]
-keywords = ["mcp", "accessibility", "a11y", "axe-core", "wcag", "cloudflare"]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "accessibility",
+    "a11y",
+    "axe-core",
+    "wcag",
+    "cloudflare",
+    "deque",
+    "testing",
+    "automation",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Software Development :: Testing",
     "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Quality Assurance",
 ]
 dependencies = [
     "mcp>=1.2.0",
@@ -28,19 +42,23 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/a11y-agent"
-Repository = "https://github.com/yourusername/a11y-agent"
-Issues = "https://github.com/yourusername/a11y-agent/issues"
+Homepage = "https://github.com/anthropics/mcp-server-a11y"
+Repository = "https://github.com/anthropics/mcp-server-a11y"
+Documentation = "https://github.com/anthropics/mcp-server-a11y#readme"
+Issues = "https://github.com/anthropics/mcp-server-a11y/issues"
+Changelog = "https://github.com/anthropics/mcp-server-a11y/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0",
     "pytest-asyncio>=0.21",
     "ruff>=0.1.0",
+    "build>=1.0.0",
+    "twine>=4.0.0",
 ]
 
 [project.scripts]
-a11y-agent = "a11y_agent.server:main"
+mcp-server-a11y = "a11y_agent.server:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -52,7 +70,6 @@ packages = ["src/a11y_agent"]
 [tool.hatch.build.targets.wheel.sources]
 "src" = ""
 
-# Include the bundled axe.min.js asset
 [tool.hatch.build.targets.wheel.force-include]
 "src/a11y_agent/assets/axe.min.js" = "a11y_agent/assets/axe.min.js"
 
@@ -61,4 +78,18 @@ include = [
     "/src",
     "/scripts",
     "/tests",
+    "/README.md",
+    "/LICENSE",
+    "/CHANGELOG.md",
 ]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
