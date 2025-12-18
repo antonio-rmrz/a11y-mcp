@@ -26,7 +26,7 @@ from .accessibility.scanner import AccessibilityScanner, ScanResult, WCAGLevel
 from .browser.manager import BrowserConfig, BrowserManager
 
 # Initialize MCP server
-mcp = FastMCP(name="a11y-agent")
+mcp = FastMCP(name="a11y-mcp")
 
 # Global state for browser and scanner singletons
 _browser_manager: Optional[BrowserManager] = None

@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2025-12-18
+
+### Fixed
+
+- CSV export now handles shadow DOM and iframe elements correctly
+- HTML report selector display for nested element contexts
+
+### Changed
+
+- Renamed internal module from `a11y_agent` to `a11y_mcp` for consistency
+
 ## [0.1.0] - 2025-12-17
 
 ### Added

@@ -1,5 +1,5 @@
 """
-a11y-agent: MCP server for accessibility testing with Cloudflare bypass.
+a11y-mcp: MCP server for accessibility testing with Cloudflare bypass.
 
 Uses Camoufox (anti-detect browser) and axe-core for accessibility audits
 on websites protected by Cloudflare.
