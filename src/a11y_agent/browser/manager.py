@@ -7,11 +7,11 @@ and other bot detection systems.
 """
 
 import asyncio
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional, Any
+from typing import Any, Optional
 
-from playwright.async_api import Page, BrowserContext
+from playwright.async_api import BrowserContext, Page
 
 
 @dataclass

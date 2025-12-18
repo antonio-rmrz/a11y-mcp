@@ -16,7 +16,6 @@ Tools:
 """
 
 import asyncio
-from pathlib import Path
 from typing import Any, Optional
 
 from mcp.server.fastmcp import FastMCP

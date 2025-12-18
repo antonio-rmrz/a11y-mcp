@@ -1,7 +1,7 @@
 """Accessibility testing module with axe-core."""
 
-from .scanner import AccessibilityScanner, ScanResult, Violation, WCAGLevel, ScanOptions
-from .report import ReportGenerator, ReportFormat
+from .report import ReportFormat, ReportGenerator
+from .scanner import AccessibilityScanner, ScanOptions, ScanResult, Violation, WCAGLevel
 
 __all__ = [
     "AccessibilityScanner",

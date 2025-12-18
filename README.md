@@ -108,7 +108,8 @@ On first run, Camoufox downloads a browser binary (~300MB).
 ## Development
 
 ```bash
-git clone https://github.com/anthropics/a11y-mcp && cd a11y-mcp
+git clone https://github.com/antonio-rmrz/a11y-mcp
+cd a11y-mcp
 uv venv && source .venv/bin/activate
 uv pip install -e ".[dev]"
 python -m camoufox fetch
@@ -122,4 +123,4 @@ npx @modelcontextprotocol/inspector uvx a11y-mcp
 
 ## License
 
-MIT
+MIT. Bundles [axe-core](https://github.com/dequelabs/axe-core) (MPL-2.0).
