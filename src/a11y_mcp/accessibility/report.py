@@ -18,6 +18,27 @@ from jinja2 import Template
 from .scanner import ScanResult
 
 
+def flatten_target(target: list) -> str:
+    """
+    Flatten possibly nested axe-core target to a string selector.
+
+    axe-core returns nested arrays for shadow DOM and iframe contexts.
+    Each nested array represents a different document context.
+
+    Examples:
+        ["button"] -> "button"
+        [["#host", "button"]] -> "#host > button"
+        [["iframe"], ["#host", "button"]] -> "iframe >> #host > button"
+    """
+    parts = []
+    for item in target:
+        if isinstance(item, list):
+            parts.append(" > ".join(item))
+        else:
+            parts.append(item)
+    return " >> ".join(parts) if len(parts) > 1 else (parts[0] if parts else "")
+
+
 class ReportFormat(str, Enum):
     """Supported report output formats."""
 
@@ -222,7 +243,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 {% for node in v.nodes[:10] %}
                 <div class="element-item">
                     <div class="code">{{ node.html }}</div>
-                    <small>Selector: {{ node.target|join(' > ') }}</small>
+                    <small>Selector: {{ node.target|flatten_target }}</small>
                     {% if node.failure_summary %}
                     <p><small>{{ node.failure_summary }}</small></p>
                     {% endif %}
@@ -334,6 +355,7 @@ class ReportGenerator:
     def _to_html(result: ScanResult) -> str:
         """Convert to HTML format."""
         template = Template(HTML_TEMPLATE)
+        template.globals["flatten_target"] = flatten_target
         return template.render(
             url=result.url,
             timestamp=result.timestamp,
@@ -376,7 +398,7 @@ class ReportGenerator:
                         v.help_url,
                         ", ".join(v.wcag_tags),
                         node.html,
-                        " > ".join(node.target),
+                        flatten_target(node.target),
                         node.failure_summary,
                     ]
                 )

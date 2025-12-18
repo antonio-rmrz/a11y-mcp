@@ -16,7 +16,7 @@ AXE_CDN_URL = f"https://cdnjs.cloudflare.com/ajax/libs/axe-core/{AXE_VERSION}/ax
 
 # Output path relative to this script
 SCRIPT_DIR = Path(__file__).parent
-OUTPUT_PATH = SCRIPT_DIR.parent / "src" / "a11y_agent" / "assets" / "axe.min.js"
+OUTPUT_PATH = SCRIPT_DIR.parent / "src" / "a11y_mcp" / "assets" / "axe.min.js"
 
 
 def download_axe() -> None:

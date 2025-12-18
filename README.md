@@ -108,8 +108,7 @@ On first run, Camoufox downloads a browser binary (~300MB).
 ## Development
 
 ```bash
-git clone https://github.com/antonio-rmrz/a11y-mcp
-cd a11y-mcp
+git clone https://github.com/anthropics/a11y-mcp && cd a11y-mcp
 uv venv && source .venv/bin/activate
 uv pip install -e ".[dev]"
 python -m camoufox fetch
@@ -123,4 +122,16 @@ npx @modelcontextprotocol/inspector uvx a11y-mcp
 
 ## License
 
-MIT. Bundles [axe-core](https://github.com/dequelabs/axe-core) (MPL-2.0).
+MIT License - see [LICENSE](LICENSE) for details.
+
+## Credits
+
+- [axe-core](https://github.com/dequelabs/axe-core) - Accessibility testing engine by Deque
+- [Camoufox](https://github.com/daijro/camoufox) - Anti-detect browser
+- [MCP](https://modelcontextprotocol.io/) - Model Context Protocol by Anthropic
+
+## Related Projects
+
+- [mcp-server-fetch](https://github.com/modelcontextprotocol/servers/tree/main/src/fetch) - Web content fetching
+- [mcp-server-puppeteer](https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer) - Browser automation
+- [mcp-server-playwright](https://github.com/microsoft/playwright-mcp) - Playwright browser control

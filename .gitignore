@@ -79,7 +79,7 @@ uv.lock
 
 # Project specific
 *.html
-!src/a11y_agent/assets/*.html
+!src/a11y_mcp/assets/*.html
 
 # Claude settings (keep template, ignore local)
 .claude/settings.local.json

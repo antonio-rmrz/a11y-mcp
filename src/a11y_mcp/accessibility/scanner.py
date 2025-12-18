@@ -40,7 +40,7 @@ class ViolationNode:
     """Individual element that triggered a violation."""
 
     html: str
-    target: list[str]
+    target: list[str | list[str]]  # Can be nested for shadow DOM/iframes
     impact: str
     failure_summary: str
 

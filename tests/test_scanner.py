@@ -12,7 +12,7 @@ class TestAccessibilityScanner:
         axe_path = (
             Path(__file__).parent.parent
             / "src"
-            / "a11y_agent"
+            / "a11y_mcp"
             / "assets"
             / "axe.min.js"
         )
@@ -21,7 +21,7 @@ class TestAccessibilityScanner:
 
     def test_wcag_level_enum(self) -> None:
         """Test WCAG level enum values."""
-        from a11y_agent.accessibility.scanner import WCAGLevel
+        from a11y_mcp.accessibility.scanner import WCAGLevel
 
         assert WCAGLevel.A.value == "wcag2a"
         assert WCAGLevel.AA.value == "wcag2aa"
@@ -31,7 +31,7 @@ class TestAccessibilityScanner:
 
     def test_report_format_enum(self) -> None:
         """Test report format enum values."""
-        from a11y_agent.accessibility.report import ReportFormat
+        from a11y_mcp.accessibility.report import ReportFormat
 
         assert ReportFormat.JSON.value == "json"
         assert ReportFormat.HTML.value == "html"
@@ -43,7 +43,7 @@ class TestBrowserConfig:
 
     def test_default_config(self) -> None:
         """Test default browser configuration."""
-        from a11y_agent.browser.manager import BrowserConfig
+        from a11y_mcp.browser.manager import BrowserConfig
 
         config = BrowserConfig()
         assert config.headless is True

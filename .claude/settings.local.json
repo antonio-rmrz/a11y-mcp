@@ -10,7 +10,10 @@
       "Bash(python3:*)",
       "mcp__a11y-agent__scan_page",
       "mcp__a11y-agent__get_violations",
-      "mcp__a11y-agent__export_report"
+      "mcp__a11y-agent__export_report",
+      "Bash(uv build:*)",
+      "Bash(uv pip install:*)",
+      "Bash(uv run pytest:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
