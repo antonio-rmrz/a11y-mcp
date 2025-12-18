@@ -1,5 +1,5 @@
 [project]
-name = "mcp-server-a11y"
+name = "a11y-mcp"
 version = "0.1.0"
 description = "MCP server for accessibility testing with Cloudflare bypass using Camoufox and axe-core"
 readme = "README.md"
@@ -42,11 +42,11 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/anthropics/mcp-server-a11y"
-Repository = "https://github.com/anthropics/mcp-server-a11y"
-Documentation = "https://github.com/anthropics/mcp-server-a11y#readme"
-Issues = "https://github.com/anthropics/mcp-server-a11y/issues"
-Changelog = "https://github.com/anthropics/mcp-server-a11y/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/anthropics/a11y-mcp"
+Repository = "https://github.com/anthropics/a11y-mcp"
+Documentation = "https://github.com/anthropics/a11y-mcp#readme"
+Issues = "https://github.com/anthropics/a11y-mcp/issues"
+Changelog = "https://github.com/anthropics/a11y-mcp/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
@@ -58,7 +58,7 @@ dev = [
 ]
 
 [project.scripts]
-mcp-server-a11y = "a11y_agent.server:main"
+a11y-mcp = "a11y_agent.server:main"
 
 [build-system]
 requires = ["hatchling"]

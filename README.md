@@ -1,13 +1,13 @@
-# mcp-server-a11y
+# a11y-mcp
 
-[![PyPI version](https://badge.fury.io/py/mcp-server-a11y.svg)](https://pypi.org/project/mcp-server-a11y/)
+[![PyPI version](https://badge.fury.io/py/a11y-mcp.svg)](https://pypi.org/project/a11y-mcp/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
 A Model Context Protocol (MCP) server for **accessibility testing** with **Cloudflare bypass**. Uses [Camoufox](https://github.com/daijro/camoufox) (anti-detect browser) and [axe-core](https://github.com/dequelabs/axe-core) to perform WCAG accessibility audits on any website, including those protected by Cloudflare.
 
-<a href="https://glama.ai/mcp/servers/mcp-server-a11y">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/mcp-server-a11y/badge" alt="mcp-server-a11y MCP server" />
+<a href="https://glama.ai/mcp/servers/a11y-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/a11y-mcp/badge" alt="a11y-mcp MCP server" />
 </a>
 
 ## Features
@@ -23,7 +23,7 @@ A Model Context Protocol (MCP) server for **accessibility testing** with **Cloud
 ### Claude Code (One Command)
 
 ```bash
-claude mcp add a11y -- uvx mcp-server-a11y
+claude mcp add a11y -- uvx a11y-mcp
 ```
 
 That's it! This command:
@@ -43,7 +43,7 @@ Add to your config file:
   "mcpServers": {
     "a11y": {
       "command": "uvx",
-      "args": ["mcp-server-a11y"]
+      "args": ["a11y-mcp"]
     }
   }
 }
@@ -56,7 +56,7 @@ Add to your config file:
 If you prefer traditional installation:
 
 ```bash
-pip install mcp-server-a11y
+pip install a11y-mcp
 ```
 
 Then configure your MCP client to run:
@@ -69,7 +69,7 @@ python -m a11y_agent.server
 Run directly without any MCP client:
 
 ```bash
-uvx mcp-server-a11y
+uvx a11y-mcp
 ```
 
 > **Note**: `uvx` (from the [uv](https://github.com/astral-sh/uv) project) automatically downloads packages from PyPI into an isolated environment and runs them. No `pip install` required.
@@ -87,7 +87,7 @@ Add to `.claude/settings.json`:
   "mcpServers": {
     "a11y": {
       "command": "uvx",
-      "args": ["mcp-server-a11y"]
+      "args": ["a11y-mcp"]
     }
   }
 }
@@ -105,7 +105,7 @@ Add to your Continue configuration (`.continue/config.json`):
         "transport": {
           "type": "stdio",
           "command": "uvx",
-          "args": ["mcp-server-a11y"]
+          "args": ["a11y-mcp"]
         }
       }
     ]
@@ -122,7 +122,7 @@ Add to Cline MCP settings:
   "mcpServers": {
     "a11y": {
       "command": "uvx",
-      "args": ["mcp-server-a11y"]
+      "args": ["a11y-mcp"]
     }
   }
 }
@@ -137,7 +137,7 @@ Add to Cursor's MCP configuration (`~/.cursor/mcp.json`):
   "mcpServers": {
     "a11y": {
       "command": "uvx",
-      "args": ["mcp-server-a11y"]
+      "args": ["a11y-mcp"]
     }
   }
 }
@@ -152,7 +152,7 @@ Add to Windsurf's MCP configuration:
   "mcpServers": {
     "a11y": {
       "command": "uvx",
-      "args": ["mcp-server-a11y"]
+      "args": ["a11y-mcp"]
     }
   }
 }
@@ -168,7 +168,7 @@ Add to Zed's settings (`~/.config/zed/settings.json`):
     "a11y": {
       "command": {
         "path": "uvx",
-        "args": ["mcp-server-a11y"]
+        "args": ["a11y-mcp"]
       }
     }
   }
@@ -247,8 +247,8 @@ The browser automatically handles:
 
 ```bash
 # Clone the repository
-git clone https://github.com/anthropics/mcp-server-a11y
-cd mcp-server-a11y
+git clone https://github.com/anthropics/a11y-mcp
+cd a11y-mcp
 
 # Create virtual environment
 uv venv
@@ -281,7 +281,7 @@ uv publish
 You can debug the MCP server using the MCP Inspector:
 
 ```bash
-npx @modelcontextprotocol/inspector uvx mcp-server-a11y
+npx @modelcontextprotocol/inspector uvx a11y-mcp
 ```
 
 ## Troubleshooting

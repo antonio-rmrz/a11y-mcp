@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial release of mcp-server-a11y
+- Initial release of a11y-mcp
 - Cloudflare bypass using Camoufox anti-detect browser
 - axe-core integration for accessibility testing (v4.10.2)
 - Support for WCAG 2.0, 2.1, and 2.2 at levels A, AA, and AAA
